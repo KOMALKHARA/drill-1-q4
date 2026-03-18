@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 1</title>
+</head>
+
+<body>
+
+    <h1>Electricity Consumption Classifier</h1>
+    <p>Enter your electricity usage (kWh) to know your category.</p>
+
+    <h2>Input Usage</h2>
+
+    <input type="number" id="kwh" placeholder="Enter kWh">
+    <br><br>
+
+    <button onclick="compute()">Check Consumption</button>
+
+    <p id="result"></p>
+
+    <hr>
+
+    <h3>Classification Table</h3>
+    <p>0 – 100 kWh: Lifeline Consumer (Discounted electricity rates)</p>
+    <p>101 – 200 kWh: Low Consumption (Normal residential rate)</p>
+    <p>201 – 300 kWh: Average Consumption (Typical electricity usage)</p>
+    <p>301 – 500 kWh: High Consumption (Higher electricity usage)</p>
+    <p>Above 500 kWh: Very High Consumption (Heavy electricity users)</p>
+
+<script>
+    function compute() {
+
+        let usage = parseFloat(document.getElementById("kwh").value);
+
+        let category = "";
+        let description = "";
+
+        if (isNaN(usage)) {
+            document.getElementById("result").innerHTML = "Please enter a valid number!";
+            return;
+        }
+
+        if (usage < 0) {
+            document.getElementById("result").innerHTML = "You cannot enter a negative number!";
+            return;
+        }
+
+        if (usage <= 100) {
+            category = "Lifeline Consumer";
+            description = "Discounted electricity rates";
+
+        } else if (usage <= 200) {
+            category = "Low Consumption";
+            description = "Normal residential rate";
+
+        } else if (usage <= 300) {
+            category = "Average Consumption";
+            description = "Typical electricity usage";
+
+        } else if (usage <= 500) {
+            category = "High Consumption";
+            description = "Higher electricity usage";
+
+        } else {
+            category = "Very High Consumption";
+            description = "Heavy electricity users";
+        }
+
+        document.getElementById("result").innerHTML =
+            "Usage: " + usage + " kWh <br>" +
+            "Category: " + category + "<br>" +
+            "Description: " + description;
+    }
+</script>
+
+</body>
+</html>
